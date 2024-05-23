@@ -30,7 +30,7 @@ fastify.register(cors, {
 });
 
 fastify.post("/event-webhook", async (request, reply) => {
-  console.log(request);
+  console.log(request.body);
 
   const {
     op,
@@ -47,11 +47,12 @@ fastify.post("/event-webhook", async (request, reply) => {
     return reply.code(400).send({ status: "error", message: "Invalid contract address" });
   }
 
-  const walletAddress = newData.to;
+  // const walletAddress = newData.to;
+  const walletAddress = "0x42c2d104C05A9889d79Cdcd82F69D389ea24Db9a";
 
-  // Additional processing if needed
-  console.log(newData); // Example: Logging the "new" data
-  console.log(`Wallet address: ${walletAddress}`); // Example: Logging the wallet address
+  // // Additional processing if needed
+  // console.log(newData); // Example: Logging the "new" data
+  // console.log(`Wallet address: ${walletAddress}`); // Example: Logging the wallet address
 
   // Conduct transactional operations related to minting
   const uuid = uuidv4();
