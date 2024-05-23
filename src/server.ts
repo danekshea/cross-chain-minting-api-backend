@@ -44,6 +44,8 @@ fastify.post("/event-webhook", async (request, reply) => {
   } = request.body;
 
   if (newData.contract_id !== serverConfig[environment].collectionAddress) {
+    console.log(`Contract ID: ${newData.contract_id}`);
+    console.log(`Expected Collection Address: ${serverConfig[environment].collectionAddress}`);
     return reply.code(400).send({ status: "error", message: "Invalid contract address" });
   }
 
