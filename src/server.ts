@@ -30,6 +30,8 @@ fastify.register(cors, {
 });
 
 fastify.post("/event-webhook", async (request, reply) => {
+  console.log(request.body);
+
   const {
     op,
     data_source,
