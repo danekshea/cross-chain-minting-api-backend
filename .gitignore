@@ -1,0 +1,6 @@
+.env
+/node_modules
+.DS_Store
+prisma/mints.db
+prisma/mints.db-journal
+/logs
