@@ -51,8 +51,8 @@ fastify.post("/event-webhook", async (request, reply) => {
   const uuid = uuidv4();
   logger.info(`Attempting to mint NFT wallet address ${walletAddress} with UUID ${uuid}`);
   try {
-    // Record the minting operation in the database
-    await addTokenMinted(walletAddress, uuid, "pending", prisma);
+    // // Record the minting operation in the database
+    // await addTokenMinted(walletAddress, uuid, "pending", prisma);
 
     // If all operations are successful, construct the response object
     const result = { collectionAddress: serverConfig[environment].collectionAddress, walletAddress, uuid };
