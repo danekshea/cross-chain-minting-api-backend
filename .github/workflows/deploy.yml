@@ -16,7 +16,7 @@ jobs:
           username: ${{ secrets.DROPLET_USER }}
           key: ${{ secrets.DROPLET_SSH_KEY }}
           script: |
-            cd ~/Projects/minting-api-backend
+            cd ~/Projects/cross-chain-minting-api-backend
             git pull
             docker compose build
             docker compose up -d
