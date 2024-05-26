@@ -5,7 +5,7 @@ import { FastifyReply, FastifyRequest } from "fastify";
 import serverConfig, { IMX_JWT_KEY_URL, environment } from "./config";
 import { mintByMintingAPI } from "./minting";
 import { verifyPassportToken, decodePassportToken, verifySNSSignature, returnActivePhase } from "./utils";
-import { addTokenMinted, checkAddressMinted, readAddressesFromAllowlist, totalMintCountAcrossAllPhases, updateUUIDStatus } from "./database";
+import { addTokenMinted, checkAddressMinted, totalMintCountAcrossAllPhases, updateUUIDStatus } from "./database";
 import { PrismaClient } from "@prisma/client";
 import axios from "axios";
 import logger from "./logger";
@@ -29,7 +29,7 @@ fastify.register(cors, {
   allowedHeaders: ["Content-Type", "Authorization"], // Allowed HTTP headers
 });
 
-fastify.post("/event-webhook", async (request, reply) => {
+fastify.post("/event-webhook", async (request: any, reply: any) => {
   const {
     op,
     data_source,
@@ -86,7 +86,7 @@ fastify.post("/event-webhook", async (request, reply) => {
   fastify.log.debug(`Received webhook: ${JSON.stringify(request.body, null, 2)}`);
 });
 
-fastify.post("/imx-webhook", async (request, reply) => {
+fastify.post("/imx-webhook", async (request: any, reply: any) => {
   console.log(request);
   const { Type, SubscribeURL, TopicArn, Message, MessageId, Timestamp, Signature, SigningCertURL } = request.body;
   logger.debug(`Received webhook: ${JSON.stringify(request.body, null, 2)}`);
@@ -156,6 +156,8 @@ const start = async () => {
     // if (!checkConfigValidity(serverConfig[environment])) {
     //   throw new Error("Invalid server configuration. Exiting.");
     // }
+    logger.info(`Attempting to start on IP ${serverConfig[environment].HOST_IP} and port ${serverConfig[environment].PORT}...`);
+
     await fastify.listen({
       port: serverConfig[environment].PORT,
       host: serverConfig[environment].HOST_IP,

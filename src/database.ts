@@ -39,35 +39,35 @@ export async function totalMintCountAcrossAllPhases(prisma: PrismaClient): Promi
   }
 }
 
-export async function loadAddressesIntoAllowlist(addresses: string[], phase: number, prisma: PrismaClient) {
-  try {
-    for (let address of addresses) {
-      await prisma.allowlist.create({
-        data: {
-          address: address.toLowerCase(),
-          phase: phase,
-        },
-      });
-    }
-    console.log("Addresses have been successfully loaded into the database.");
-  } catch (error) {
-    console.error("Error loading addresses into the database:", error);
-  }
-}
+// export async function loadAddressesIntoAllowlist(addresses: string[], phase: number, prisma: PrismaClient) {
+//   try {
+//     for (let address of addresses) {
+//       await prisma.allowlist.create({
+//         data: {
+//           address: address.toLowerCase(),
+//           phase: phase,
+//         },
+//       });
+//     }
+//     console.log("Addresses have been successfully loaded into the database.");
+//   } catch (error) {
+//     console.error("Error loading addresses into the database:", error);
+//   }
+// }
 
-export async function readAddressesFromAllowlist(phase: number, prisma: PrismaClient): Promise<string[]> {
-  try {
-    const addresses = await prisma.allowlist.findMany({
-      where: {
-        phase: phase,
-      },
-    });
-    return addresses.map((address) => address.address.toLowerCase());
-  } catch (error) {
-    console.error("Error reading addresses from the database:", error);
-    throw error;
-  }
-}
+// export async function readAddressesFromAllowlist(phase: number, prisma: PrismaClient): Promise<string[]> {
+//   try {
+//     const addresses = await prisma.allowlist.findMany({
+//       where: {
+//         phase: phase,
+//       },
+//     });
+//     return addresses.map((address) => address.address.toLowerCase());
+//   } catch (error) {
+//     console.error("Error reading addresses from the database:", error);
+//     throw error;
+//   }
+// }
 
 export async function updateUUIDStatus(uuid: string, status: string, prisma: PrismaClient): Promise<void> {
   try {

@@ -1,6 +1,5 @@
 import { PrismaClient } from "@prisma/client";
 import { readAddressesFromCSV } from "../src/utils";
-import { loadAddressesIntoAllowlist } from "../src/database";
 
 const prisma = new PrismaClient();
 
@@ -17,7 +16,7 @@ const loadPercentage = 100; // Percentage of the allowlist to load
       const addressesToLoad = signers.slice(0, totalToLoad).map((signer) => signer.address);
 
       // Load the defined percentage of addresses into the allowlist
-      await loadAddressesIntoAllowlist(addressesToLoad, 1, prisma);
+      // await loadAddressesIntoAllowlist(addressesToLoad, 1, prisma);
       console.log(`Loaded ${totalToLoad} addresses (out of ${signers.length}) into the allowlist.`);
     } else {
       console.log("No addresses to load.");

@@ -4,3 +4,4 @@
 prisma/mints.db
 prisma/mints.db-journal
 /logs
+/dist
