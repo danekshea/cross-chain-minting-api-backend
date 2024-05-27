@@ -30,6 +30,12 @@ fastify.register(cors, {
 });
 
 fastify.post("/event-webhook", async (request: any, reply: any) => {
+  const webhookSecret = request.headers["x-custom-header"];
+
+  if (webhookSecret !== serverConfig[environment].WEBHOOK_SECRET) {
+    return reply.status(403).send({ error: "Invalid webhook secret" });
+  }
+
   const {
     op,
     data_source,

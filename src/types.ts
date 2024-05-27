@@ -16,6 +16,7 @@ export interface ExtendedMintPhase extends MintPhase {
 interface EnvironmentConfig {
   API_URL: string;
   HUB_API_KEY: string;
+  WEBHOOK_SECRET: string;
   RPS_API_KEY: string;
   HOST_IP: string;
   PORT: number;
