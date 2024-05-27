@@ -30,7 +30,7 @@ fastify.register(cors, {
 });
 
 fastify.post("/event-webhook", async (request: any, reply: any) => {
-  const webhookSecret = request.headers["x-custom-header"];
+  const webhookSecret = request.headers["goldsky-webhook-secret"];
 
   if (webhookSecret !== serverConfig[environment].WEBHOOK_SECRET) {
     return reply.status(403).send({ error: "Invalid webhook secret" });
